@@ -1,9 +1,9 @@
 :root {
-  --bg: #050508;
-  --bg2: #0a0a12;
-  --cyan: #00f0ff;
-  --magenta: #ff2fd6;
-  --violet: #7b5cff;
+  --bg: #030604;
+  --bg2: #060a07;
+  --cyan: #00e676;
+  --magenta: #a3e635;
+  --violet: #00bfa5;
   --text: #e8e8f0;
   --dim: #8a8a9e;
   --glass: rgba(255, 255, 255, .04);
@@ -193,6 +193,88 @@ nav {
   width: 100%
 }
 
+
+/* ---------- mobile nav ---------- */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  width: 42px;
+  height: 42px;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px
+}
+
+.nav-toggle span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: transform .3s, opacity .3s
+}
+
+.nav-toggle.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg)
+}
+
+.nav-toggle.open span:nth-child(2) {
+  opacity: 0
+}
+
+.nav-toggle.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg)
+}
+
+@media(max-width:640px) {
+  .nav-toggle {
+    display: flex
+  }
+
+  nav {
+    position: fixed
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    background: rgba(3, 6, 4, .92);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .35s ease
+  }
+
+  .nav-links.open {
+    max-height: 340px
+  }
+
+  .nav-links a {
+    padding: .9rem clamp(1.2rem, 5vw, 4rem);
+    font-size: .95rem;
+    display: block
+  }
+
+  .nav-links a::after {
+    display: none
+  }
+
+  .nav-links a:hover {
+    background: var(--glass);
+    color: var(--green)
+  }
+}
+
 @media(max-width:640px) {
   .nav-links {
     gap: 1rem;
@@ -297,7 +379,7 @@ nav {
 }
 
 .btn-primary:hover {
-  box-shadow: 0 0 32px rgba(0, 240, 255, .45)
+  box-shadow: 0 0 32px rgba(0, 230, 118, .45)
 }
 
 .btn-ghost {
@@ -308,7 +390,7 @@ nav {
 
 .btn-ghost:hover {
   border-color: var(--cyan);
-  box-shadow: 0 0 20px rgba(0, 240, 255, .2)
+  box-shadow: 0 0 20px rgba(0, 230, 118, .2)
 }
 
 .scroll-hint {
@@ -533,7 +615,7 @@ section {
   color: #02020a;
   background: var(--cyan);
   border-color: var(--cyan);
-  box-shadow: 0 0 18px rgba(0, 240, 255, .4)
+  box-shadow: 0 0 18px rgba(0, 230, 118, .4)
 }
 
 /* projects */
@@ -560,7 +642,7 @@ section {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(500px circle at var(--mx, 50%) var(--my, 50%), rgba(0, 240, 255, .09), transparent 45%);
+  background: radial-gradient(500px circle at var(--mx, 50%) var(--my, 50%), rgba(0, 230, 118, .09), transparent 45%);
   opacity: 0;
   transition: opacity .3s;
   pointer-events: none
@@ -571,7 +653,7 @@ section {
 }
 
 .card:hover {
-  border-color: rgba(0, 240, 255, .4)
+  border-color: rgba(0, 230, 118, .4)
 }
 
 .card .pnum {
@@ -603,7 +685,7 @@ section {
   font-size: .68rem;
   color: var(--cyan);
   padding: .2rem .6rem;
-  border: 1px solid rgba(0, 240, 255, .3);
+  border: 1px solid rgba(0, 230, 118, .3);
   border-radius: 999px
 }
 
@@ -711,15 +793,15 @@ section {
   font-family: 'JetBrains Mono', monospace;
   font-size: clamp(.95rem, 3vw, 1.3rem);
   color: var(--cyan);
-  border: 1px solid rgba(0, 240, 255, .35);
+  border: 1px solid rgba(0, 230, 118, .35);
   padding: 1rem 2.2rem;
   border-radius: 10px;
   transition: all .3s
 }
 
 .contact-mail:hover {
-  background: rgba(0, 240, 255, .08);
-  box-shadow: 0 0 34px rgba(0, 240, 255, .3);
+  background: rgba(0, 230, 118, .08);
+  box-shadow: 0 0 34px rgba(0, 230, 118, .3);
   transform: translateY(-3px)
 }
 
@@ -773,8 +855,9 @@ footer {
   }
 }
 
-/* ---------- architecture modal ---------- */
-#archModal {
+/* ---------- modals (architecture + certs) ---------- */
+#archModal,
+#certsModal {
   position: fixed;
   inset: 0;
   z-index: 500;
@@ -786,54 +869,61 @@ footer {
   transition: opacity .3s, visibility .3s
 }
 
-#archModal.open {
+#archModal.open,
+#certsModal.open {
   visibility: visible;
   opacity: 1
 }
 
-#archModal .backdrop {
+#archModal .backdrop,
+#certsModal .backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(3, 3, 8, .55);
+  background: rgba(3, 6, 4, .55);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px)
 }
 
-#archModal .panel {
+#archModal .panel,
+#certsModal .panel {
   position: relative;
   z-index: 2;
   max-width: 960px;
   width: 100%;
   max-height: 86vh;
   overflow: auto;
-  background: linear-gradient(160deg, rgba(16, 16, 28, .92), rgba(8, 8, 16, .94));
-  border: 1px solid rgba(0, 240, 255, .25);
+  background: linear-gradient(160deg, rgba(14, 22, 16, .93), rgba(6, 10, 7, .95));
+  border: 1px solid rgba(0, 230, 118, .25);
   border-radius: 16px;
   padding: clamp(1.2rem, 3vw, 2.4rem);
-  box-shadow: 0 0 60px rgba(0, 240, 255, .15), 0 30px 80px rgba(0, 0, 0, .6);
+  box-shadow: 0 0 60px rgba(0, 230, 118, .15), 0 30px 80px rgba(0, 0, 0, .6);
   transform: translateY(24px) scale(.97);
   transition: transform .35s cubic-bezier(.2, .8, .2, 1)
 }
 
-#archModal.open .panel {
+#archModal.open .panel,
+#certsModal.open .panel {
   transform: none
 }
 
-#archModal .m-head {
+#archModal .m-head,
+#certsModal .m-head {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.2rem
 }
 
-#archModal .m-title {
+#archModal .m-title,
+#certsModal .m-title {
   font-family: 'JetBrains Mono', monospace;
   font-size: 1rem;
-  color: var(--cyan);
+  color: var(--green);
   letter-spacing: .08em
 }
 
-#archModal .m-close {
+#archModal .m-close,
+#certsModal .m-close {
   width: 38px;
   height: 38px;
   border-radius: 10px;
@@ -843,17 +933,20 @@ footer {
   font-size: 1.1rem;
   cursor: pointer;
   transition: all .25s;
-  line-height: 1
+  line-height: 1;
+  flex: none
 }
 
-#archModal .m-close:hover {
+#archModal .m-close:hover,
+#certsModal .m-close:hover {
   border-color: var(--magenta);
   color: var(--magenta);
-  box-shadow: 0 0 16px rgba(255, 47, 214, .35);
+  box-shadow: 0 0 16px rgba(163, 230, 53, .35);
   transform: rotate(90deg)
 }
 
-#archModal .m-body svg {
+#archModal .m-body svg,
+#certsModal .m-body svg {
   width: 100%;
   height: auto;
   display: block
@@ -865,20 +958,20 @@ body.modal-open {
 
 /* diagram svg element classes */
 #archModal .m-body .bx {
-  fill: rgba(0, 240, 255, .05);
-  stroke: #00f0ff;
+  fill: rgba(0, 230, 118, .05);
+  stroke: #00e676;
   stroke-width: 1.2
 }
 
 #archModal .m-body .bx2 {
-  fill: rgba(255, 47, 214, .05);
-  stroke: #ff2fd6;
+  fill: rgba(163, 230, 53, .05);
+  stroke: #a3e635;
   stroke-width: 1.2
 }
 
 #archModal .m-body .bx3 {
-  fill: rgba(123, 92, 255, .06);
-  stroke: #7b5cff;
+  fill: rgba(0, 191, 165, .06);
+  stroke: #00bfa5;
   stroke-width: 1.2
 }
 
@@ -900,14 +993,14 @@ body.modal-open {
 }
 
 #archModal .m-body .ln {
-  stroke: #00f0ff;
+  stroke: #00e676;
   stroke-width: 1.2;
   fill: none;
   opacity: .75
 }
 
 #archModal .m-body .ln2 {
-  stroke: #ff2fd6;
+  stroke: #a3e635;
   stroke-width: 1.2;
   fill: none;
   opacity: .75
@@ -920,7 +1013,164 @@ body.modal-open {
 @media (prefers-reduced-motion:reduce) {
 
   #archModal,
-  #archModal .panel {
+  #certsModal,
+  #archModal .panel,
+  #certsModal .panel {
     transition: none
   }
+}
+
+/* ---- orbit scene ---- */
+.orbit-stage {
+  position: relative;
+  width: min(420px, 78vw);
+  aspect-ratio: 1;
+  margin: .5rem auto 1rem
+}
+
+.star {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 34%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 42% 38%, rgba(163, 230, 53, .5), rgba(0, 230, 118, .32) 42%, rgba(0, 230, 118, .1) 68%, transparent 75%);
+  box-shadow: 0 0 50px rgba(0, 230, 118, .3), 0 0 120px rgba(0, 230, 118, .14), inset 0 0 30px rgba(163, 230, 53, .28);
+  animation: pulse 4.5s ease-in-out infinite
+}
+
+@keyframes pulse {
+  50% {
+    box-shadow: 0 0 70px rgba(0, 230, 118, .42), 0 0 150px rgba(0, 230, 118, .2), inset 0 0 40px rgba(163, 230, 53, .38)
+  }
+}
+
+.orbit-ring {
+  position: absolute;
+  border: 1px dashed rgba(0, 230, 118, .22);
+  border-radius: 50%
+}
+
+.orbit-ring.r1 {
+  inset: 4%
+}
+
+.orbit-ring.r2 {
+  inset: 19%
+}
+
+.orbit {
+  position: absolute;
+  animation: orbitSpin linear infinite;
+  animation-play-state: paused
+}
+
+#certsModal.open .orbit {
+  animation-play-state: running
+}
+
+.orbit.o1 {
+  inset: 4%;
+  animation-duration: 22s
+}
+
+.orbit.o2 {
+  inset: 19%;
+  animation-duration: 32s;
+  animation-direction: reverse
+}
+
+.orbit img {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 86px;
+  max-width: 26%;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(0 0 14px rgba(0, 230, 118, .4));
+  animation: orbitSpin linear infinite reverse;
+  animation-play-state: paused
+}
+
+#certsModal.open .orbit img {
+  animation-play-state: running
+}
+
+.orbit.o1 img {
+  animation-duration: 22s
+}
+
+.orbit.o2 img {
+  animation-duration: 32s;
+  animation-direction: normal
+}
+
+@keyframes orbitSpin {
+  to {
+    transform: rotate(360deg)
+  }
+}
+
+/* counter-rotation keeps badges upright: compose with the translate */
+.orbit img {
+  animation-name: imgSpin
+}
+
+@keyframes imgSpin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg)
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(360deg)
+  }
+}
+
+.orbit.o2 img {
+  animation-direction: reverse
+}
+
+/* caption links under the orbit */
+#certsModal .badges {
+  display: flex;
+  gap: 1.5rem 2.5rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: .4rem 0 1rem
+}
+
+#certsModal .badges a {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .74rem;
+  color: var(--dim);
+  transition: color .25s, text-shadow .25s
+}
+
+#certsModal .badges a:hover {
+  color: var(--green);
+  text-shadow: 0 0 12px rgba(0, 230, 118, .5)
+}
+
+@media (prefers-reduced-motion:reduce) {
+
+  .star,
+  .orbit,
+  .orbit img {
+    animation: none !important
+  }
+}
+
+/* clickable stat cards */
+.stat-click {
+  cursor: pointer
+}
+
+.stat-click:hover {
+  border-color: var(--green)
+}
+
+.stat-click:hover small {
+  color: var(--green)
 }
