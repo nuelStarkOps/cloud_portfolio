@@ -218,27 +218,13 @@ nav {
   transition: transform .3s, opacity .3s
 }
 
-.nav-toggle.open span:nth-child(1) {
-  transform: translateY(7px) rotate(45deg)
-}
-
-.nav-toggle.open span:nth-child(2) {
-  opacity: 0
-}
-
-.nav-toggle.open span:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg)
-}
+.nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg) }
+.nav-toggle.open span:nth-child(2) { opacity: 0 }
+.nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg) }
 
 @media(max-width:640px) {
-  .nav-toggle {
-    display: flex
-  }
-
-  nav {
-    position: fixed
-  }
-
+  .nav-toggle { display: flex }
+  nav { position: fixed }
   .nav-links {
     position: absolute;
     top: 100%;
@@ -254,25 +240,10 @@ nav {
     overflow: hidden;
     transition: max-height .35s ease
   }
-
-  .nav-links.open {
-    max-height: 340px
-  }
-
-  .nav-links a {
-    padding: .9rem clamp(1.2rem, 5vw, 4rem);
-    font-size: .95rem;
-    display: block
-  }
-
-  .nav-links a::after {
-    display: none
-  }
-
-  .nav-links a:hover {
-    background: var(--glass);
-    color: var(--green)
-  }
+  .nav-links.open { max-height: 340px }
+  .nav-links a { padding: .9rem clamp(1.2rem, 5vw, 4rem); font-size: .95rem; display: block }
+  .nav-links a::after { display: none }
+  .nav-links a:hover { background: var(--glass); color: var(--green) }
 }
 
 @media(max-width:640px) {
@@ -316,8 +287,8 @@ nav {
 }
 
 .hero-name {
-  font-size: clamp(2.8rem, 9vw, 7rem);
-  line-height: 1.02;
+  font-size: clamp(2.6rem, 7.5vw, 5.4rem);
+  line-height: 1.04;
   opacity: 0;
   animation: fadeUp .8s .4s forwards
 }
@@ -327,6 +298,10 @@ nav {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent
+}
+.hero-name .grad {
+  font-size: .52em;
+  letter-spacing: .04em
 }
 
 .hero-title {
@@ -856,8 +831,7 @@ footer {
 }
 
 /* ---------- modals (architecture + certs) ---------- */
-#archModal,
-#certsModal {
+#archModal, #certsModal {
   position: fixed;
   inset: 0;
   z-index: 500;
@@ -869,14 +843,12 @@ footer {
   transition: opacity .3s, visibility .3s
 }
 
-#archModal.open,
-#certsModal.open {
+#archModal.open, #certsModal.open {
   visibility: visible;
   opacity: 1
 }
 
-#archModal .backdrop,
-#certsModal .backdrop {
+#archModal .backdrop, #certsModal .backdrop {
   position: absolute;
   inset: 0;
   background: rgba(3, 6, 4, .55);
@@ -884,8 +856,7 @@ footer {
   -webkit-backdrop-filter: blur(14px)
 }
 
-#archModal .panel,
-#certsModal .panel {
+#archModal .panel, #certsModal .panel {
   position: relative;
   z-index: 2;
   max-width: 960px;
@@ -901,29 +872,25 @@ footer {
   transition: transform .35s cubic-bezier(.2, .8, .2, 1)
 }
 
-#archModal.open .panel,
-#certsModal.open .panel {
+#archModal.open .panel, #certsModal.open .panel {
   transform: none
 }
 
-#archModal .m-head,
-#certsModal .m-head {
+#archModal .m-head, #certsModal .m-head {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.2rem
 }
 
-#archModal .m-title,
-#certsModal .m-title {
+#archModal .m-title, #certsModal .m-title {
   font-family: 'JetBrains Mono', monospace;
   font-size: 1rem;
   color: var(--green);
   letter-spacing: .08em
 }
 
-#archModal .m-close,
-#certsModal .m-close {
+#archModal .m-close, #certsModal .m-close {
   width: 38px;
   height: 38px;
   border-radius: 10px;
@@ -937,16 +904,14 @@ footer {
   flex: none
 }
 
-#archModal .m-close:hover,
-#certsModal .m-close:hover {
+#archModal .m-close:hover, #certsModal .m-close:hover {
   border-color: var(--magenta);
   color: var(--magenta);
   box-shadow: 0 0 16px rgba(163, 230, 53, .35);
   transform: rotate(90deg)
 }
 
-#archModal .m-body svg,
-#certsModal .m-body svg {
+#archModal .m-body svg, #certsModal .m-body svg {
   width: 100%;
   height: auto;
   display: block
@@ -957,67 +922,18 @@ body.modal-open {
 }
 
 /* diagram svg element classes */
-#archModal .m-body .bx {
-  fill: rgba(0, 230, 118, .05);
-  stroke: #00e676;
-  stroke-width: 1.2
-}
-
-#archModal .m-body .bx2 {
-  fill: rgba(163, 230, 53, .05);
-  stroke: #a3e635;
-  stroke-width: 1.2
-}
-
-#archModal .m-body .bx3 {
-  fill: rgba(0, 191, 165, .06);
-  stroke: #00bfa5;
-  stroke-width: 1.2
-}
-
-#archModal .m-body .zone {
-  fill: rgba(255, 255, 255, .02);
-  stroke: rgba(255, 255, 255, .14);
-  stroke-width: 1;
-  stroke-dasharray: 6 5
-}
-
-#archModal .m-body .tx {
-  fill: #e8e8f0;
-  font-size: 13px
-}
-
-#archModal .m-body .sm {
-  fill: #8a8a9e;
-  font-size: 10.5px
-}
-
-#archModal .m-body .ln {
-  stroke: #00e676;
-  stroke-width: 1.2;
-  fill: none;
-  opacity: .75
-}
-
-#archModal .m-body .ln2 {
-  stroke: #a3e635;
-  stroke-width: 1.2;
-  fill: none;
-  opacity: .75
-}
-
-#archModal .m-body .dsh {
-  stroke-dasharray: 5 5
-}
+#archModal .m-body .bx { fill: rgba(0, 230, 118, .05); stroke: #00e676; stroke-width: 1.2 }
+#archModal .m-body .bx2 { fill: rgba(163, 230, 53, .05); stroke: #a3e635; stroke-width: 1.2 }
+#archModal .m-body .bx3 { fill: rgba(0, 191, 165, .06); stroke: #00bfa5; stroke-width: 1.2 }
+#archModal .m-body .zone { fill: rgba(255, 255, 255, .02); stroke: rgba(255, 255, 255, .14); stroke-width: 1; stroke-dasharray: 6 5 }
+#archModal .m-body .tx { fill: #e8e8f0; font-size: 13px }
+#archModal .m-body .sm { fill: #8a8a9e; font-size: 10.5px }
+#archModal .m-body .ln { stroke: #00e676; stroke-width: 1.2; fill: none; opacity: .75 }
+#archModal .m-body .ln2 { stroke: #a3e635; stroke-width: 1.2; fill: none; opacity: .75 }
+#archModal .m-body .dsh { stroke-dasharray: 5 5 }
 
 @media (prefers-reduced-motion:reduce) {
-
-  #archModal,
-  #certsModal,
-  #archModal .panel,
-  #certsModal .panel {
-    transition: none
-  }
+  #archModal, #certsModal, #archModal .panel, #certsModal .panel { transition: none }
 }
 
 /* ---- orbit scene ---- */
@@ -1041,9 +957,7 @@ body.modal-open {
 }
 
 @keyframes pulse {
-  50% {
-    box-shadow: 0 0 70px rgba(0, 230, 118, .42), 0 0 150px rgba(0, 230, 118, .2), inset 0 0 40px rgba(163, 230, 53, .38)
-  }
+  50% { box-shadow: 0 0 70px rgba(0, 230, 118, .42), 0 0 150px rgba(0, 230, 118, .2), inset 0 0 40px rgba(163, 230, 53, .38) }
 }
 
 .orbit-ring {
@@ -1052,34 +966,14 @@ body.modal-open {
   border-radius: 50%
 }
 
-.orbit-ring.r1 {
-  inset: 4%
-}
+.orbit-ring.r1 { inset: 4% }
+.orbit-ring.r2 { inset: 19% }
 
-.orbit-ring.r2 {
-  inset: 19%
-}
+.orbit { position: absolute; animation: orbitSpin linear infinite; animation-play-state: paused }
+#certsModal.open .orbit { animation-play-state: running }
 
-.orbit {
-  position: absolute;
-  animation: orbitSpin linear infinite;
-  animation-play-state: paused
-}
-
-#certsModal.open .orbit {
-  animation-play-state: running
-}
-
-.orbit.o1 {
-  inset: 4%;
-  animation-duration: 22s
-}
-
-.orbit.o2 {
-  inset: 19%;
-  animation-duration: 32s;
-  animation-direction: reverse
-}
+.orbit.o1 { inset: 4%; animation-duration: 22s }
+.orbit.o2 { inset: 19%; animation-duration: 32s; animation-direction: reverse }
 
 .orbit img {
   position: absolute;
@@ -1092,44 +986,19 @@ body.modal-open {
   animation: orbitSpin linear infinite reverse;
   animation-play-state: paused
 }
+#certsModal.open .orbit img { animation-play-state: running }
+.orbit.o1 img { animation-duration: 22s }
+.orbit.o2 img { animation-duration: 32s; animation-direction: normal }
 
-#certsModal.open .orbit img {
-  animation-play-state: running
-}
-
-.orbit.o1 img {
-  animation-duration: 22s
-}
-
-.orbit.o2 img {
-  animation-duration: 32s;
-  animation-direction: normal
-}
-
-@keyframes orbitSpin {
-  to {
-    transform: rotate(360deg)
-  }
-}
+@keyframes orbitSpin { to { transform: rotate(360deg) } }
 
 /* counter-rotation keeps badges upright: compose with the translate */
-.orbit img {
-  animation-name: imgSpin
-}
-
+.orbit img { animation-name: imgSpin }
 @keyframes imgSpin {
-  from {
-    transform: translate(-50%, -50%) rotate(0deg)
-  }
-
-  to {
-    transform: translate(-50%, -50%) rotate(360deg)
-  }
+  from { transform: translate(-50%, -50%) rotate(0deg) }
+  to { transform: translate(-50%, -50%) rotate(360deg) }
 }
-
-.orbit.o2 img {
-  animation-direction: reverse
-}
+.orbit.o2 img { animation-direction: reverse }
 
 /* caption links under the orbit */
 #certsModal .badges {
@@ -1148,29 +1017,13 @@ body.modal-open {
   transition: color .25s, text-shadow .25s
 }
 
-#certsModal .badges a:hover {
-  color: var(--green);
-  text-shadow: 0 0 12px rgba(0, 230, 118, .5)
-}
+#certsModal .badges a:hover { color: var(--green); text-shadow: 0 0 12px rgba(0, 230, 118, .5) }
 
 @media (prefers-reduced-motion:reduce) {
-
-  .star,
-  .orbit,
-  .orbit img {
-    animation: none !important
-  }
+  .star, .orbit, .orbit img { animation: none !important }
 }
 
 /* clickable stat cards */
-.stat-click {
-  cursor: pointer
-}
-
-.stat-click:hover {
-  border-color: var(--green)
-}
-
-.stat-click:hover small {
-  color: var(--green)
-}
+.stat-click { cursor: pointer }
+.stat-click:hover { border-color: var(--green) }
+.stat-click:hover small { color: var(--green) }
