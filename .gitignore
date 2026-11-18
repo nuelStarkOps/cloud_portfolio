@@ -1,0 +1,13 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+
+# Private — never publish personal CVs
+cv/
+
+# Local preview artifacts (not part of the site)
+preview/
+
+# Archives / logs
+*.zip
+*.log
